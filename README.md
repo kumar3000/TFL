@@ -1,2 +1,2 @@
 # TFL
-Text Football League
+Terminal Football League
