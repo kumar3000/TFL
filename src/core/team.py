@@ -13,7 +13,7 @@ class Team:
         self.ties = 0
 
     def get_name(self) -> str:
-        return f"{self.name}"
+        return f"{self.city} {self.name}"
 
     def get_record(self) -> str:
         if self.ties > 0:
