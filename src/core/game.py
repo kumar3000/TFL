@@ -2,7 +2,7 @@ import random
 from .team import Team
 
 def score() -> int:
-    return random.randint(0, 5) * 7 + random.randint(0, 2) * 3
+    return random.randint(0, 6) * 7 + random.randint(0, 3) * 3
 
 def start_game(team: Team) -> str:
     score_for = score()
