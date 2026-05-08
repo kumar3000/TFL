@@ -12,6 +12,15 @@ class Team:
         self.losses = 0
         self.ties = 0
 
+    def add_win(self):
+        self.wins += 1
+    
+    def add_loss(self):
+        self.losses += 1
+    
+    def add_tie(self):
+        self.ties += 1
+
     def get_name(self) -> str:
         return f"{self.city} {self.name}"
 

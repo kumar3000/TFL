@@ -23,9 +23,10 @@ def season(team: Team):
         for i in range(18):
             time.sleep(0.4)
             table.add_row(
-                f"WEEK {i + 1}" if i != bye else f"[grey35]WEEK {i + 1}[/grey35]", 
-                game.start_game(team) if bye != i else "[grey35]BYE[/grey35]", 
-                team.get_record() if bye != i else f"[grey35]{team.get_record()}[/grey35]")
+                f"WEEK {i + 1:<2}" if i != bye else f"[grey35]WEEK {i + 1:<2}[/grey35]",
+                game.start_game(team) if bye != i else "[grey35]BYE[/grey35]",
+                team.get_record() if bye != i else f"[grey35]{team.get_record()}[/grey35]"
+            )
 
     # reset team stats
     team.wins = 0

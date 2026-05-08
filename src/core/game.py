@@ -8,11 +8,11 @@ def start_game(team: Team) -> str:
     score_for = score()
     score_against = score()
     if score_for > score_against:
-        team.wins += 1
-        return f"[bold green]{score_for}[/bold green]-{score_against}"
+        team.add_win()
+        return f"[bold green]{score_for:>2}[/bold green]-{score_against:<2}"
     elif score_for < score_against:
-        team.losses += 1
-        return f"[bold red]{score_for}[/bold red]-{score_against}"
+        team.add_loss()
+        return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}"
     else:
-        team.ties += 1
-        return f"[bold yellow]{score_for}-{score_against}[/bold yellow]"
+        team.add_tie()
+        return f"[bold yellow]{score_for:>2}-{score_against:<2}[/bold yellow]"
