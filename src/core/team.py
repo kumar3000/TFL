@@ -4,10 +4,14 @@ class Team:
     wins: int
     losses: int
     ties: int
+    year: int
+    seasons: int
 
-    def __init__(self, name: str, city: str):
+    def __init__(self, name: str, city: str, year: int):
         self.name = name
         self.city = city
+        self.year = year
+        self.seasons = 0
         self.wins = 0
         self.losses = 0
         self.ties = 0
@@ -23,6 +27,16 @@ class Team:
 
     def get_name(self) -> str:
         return f"{self.city} {self.name}"
+
+    def get_year(self) -> int:
+        return self.year
+
+    def get_seasons(self) -> int:
+        return self.seasons
+    
+    def add_year(self):
+        self.year += 1
+        self.seasons += 1
 
     def get_record(self) -> str:
         if self.ties > 0:
