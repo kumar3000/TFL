@@ -4,7 +4,8 @@ This module handles the game simulation.
 Functions:
     score(): Generates a random score for the game.
     start_game(team: Team): Starts a game and returns the score and result.
-    tieless_game(team: Team): Starts a game and returns the score and result, but does not count ties.
+    tieless_game(team: Team): Starts a game and returns the score and result, 
+                              but does not count ties.
 """
 
 import random
@@ -51,9 +52,9 @@ def start_game(team: Team) -> tuple[str, bool]:
     if score_for > score_against:
         team.add_win()
         return f"[bold green]{score_for:>2}[/bold green]-{score_against:<2}", True
-    else:
-        team.add_loss()
-        return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
+
+    team.add_loss()
+    return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
 
 def tieless_game(team: Team) -> tuple[str, bool]:
     """
@@ -76,6 +77,6 @@ def tieless_game(team: Team) -> tuple[str, bool]:
     if score_for > score_against:
         team.add_win()
         return f"[bold green]{score_for:>2}[/bold green]-{score_against:<2}", True
-    else:
-        team.add_loss()
-        return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
+
+    team.add_loss()
+    return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
