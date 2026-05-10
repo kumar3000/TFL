@@ -1,12 +1,41 @@
+"""
+This module handles the game simulation.
+
+Functions:
+    score(): Generates a random score for the game.
+    start_game(team: Team): Starts a game and returns the score and result.
+    tieless_game(team: Team): Starts a game and returns the score and result, but does not count ties.
+"""
+
 import random
 from .team import Team
 
 def score() -> tuple[int, int]:
+    """
+    Returns a tuple of the score for the team and the score against the team.
+
+    Args:
+        None
+
+    Returns:
+        tuple[int, int]: A tuple of the score for the team and the score against the team.
+    """
+
     score_for = random.randint(0, 6) * 7 + random.randint(0, 3) * 3
     score_against = random.randint(0, 6) * 7 + random.randint(0, 3) * 3
     return score_for, score_against
 
 def start_game(team: Team) -> tuple[str, bool]:
+    """
+    Starts a game and returns the score and result.
+
+    Args:
+        team: Team: The team playing the game.
+
+    Returns:
+        tuple[str, bool]: A tuple of the score and result.
+    """
+
     # generate scores
     score_for, score_against = score()
 
@@ -27,6 +56,16 @@ def start_game(team: Team) -> tuple[str, bool]:
         return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
 
 def tieless_game(team: Team) -> tuple[str, bool]:
+    """
+    Starts a game and returns the score and result, but does not count ties.
+
+    Args:
+        team: Team: The team playing the game.
+
+    Returns:
+        tuple[str, bool]: A tuple of the score and result.
+    """
+
     score_for, score_against = score()
 
     # tie check
