@@ -18,9 +18,15 @@ class Team:
 
     def add_win(self):
         self.wins += 1
+
+    def get_wins(self) -> int:
+        return self.wins
     
     def add_loss(self):
         self.losses += 1
+
+    def get_losses(self) -> int:
+        return self.losses
     
     def add_tie(self):
         self.ties += 1
