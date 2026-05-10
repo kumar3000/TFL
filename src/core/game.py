@@ -16,14 +16,13 @@ def start_game(team: Team) -> tuple[str, bool]:
         if tie_chance == 1:
             team.add_tie()
             return f"[bold yellow]{score_for:>2}-{score_against:<2}[/bold yellow]", False
-        else:
-            score_for += 3
+        score_for += 3
 
     # win/loss check
     if score_for > score_against:
         team.add_win()
         return f"[bold green]{score_for:>2}[/bold green]-{score_against:<2}", True
-    elif score_for < score_against:
+    else:
         team.add_loss()
         return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
 
@@ -38,6 +37,6 @@ def tieless_game(team: Team) -> tuple[str, bool]:
     if score_for > score_against:
         team.add_win()
         return f"[bold green]{score_for:>2}[/bold green]-{score_against:<2}", True
-    elif score_for < score_against:
+    else:
         team.add_loss()
         return f"[bold red]{score_for:>2}[/bold red]-{score_against:<2}", False
