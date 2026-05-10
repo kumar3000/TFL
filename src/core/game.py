@@ -11,9 +11,9 @@ def start_game(team: Team) -> tuple[str, bool]:
     score_for, score_against = score()
 
     # tie check
-    tie_chance = random.randint(0, 500)
+    tie_chance = random.randint(0, 100)
     if score_for == score_against:
-        if tie_chance == 7:
+        if tie_chance == 1:
             team.add_tie()
             return f"[bold yellow]{score_for:>2}-{score_against:<2}[/bold yellow]", False
         else:

@@ -55,6 +55,9 @@ def main():
    while True:
       season(team)
       team.add_year()
+      if team.get_seasons() == 20:
+         console.print(Align.center(Panel.fit("[gold3]You retire a veteran and a legend![/gold3]", padding=1), vertical="middle"))
+         break
       cont = input("enter to continue: ")
       if cont != "":
          break
