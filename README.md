@@ -4,7 +4,6 @@ Terminal Football League
 TODO!
 1. Tweak Formatting
     - Footer for season table for current week (similar to career table)
-    - More readable title colors
 
 2. Player Stats
     - Integrate player attributes with team/game sim

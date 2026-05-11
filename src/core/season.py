@@ -70,7 +70,7 @@ def update_career_table(team: Team, finish: str):
         career_table.show_footer = True
         career_table.caption = f"{team.get_seasons() + 1} Seasons"
         career_table.columns[0].footer = f"{team.get_year()}"
-        career_table.columns[1].footer = f"{team.get_record():<6} {finish}"   
+        career_table.columns[1].footer = f"{team.get_record():<6} {finish}"
         console.print(career_table_centered)
         career_table.add_row(str(team.get_year()), f"{team.get_record():<6} {finish}")
     else:
