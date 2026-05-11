@@ -4,7 +4,6 @@ Terminal Football League
 TODO!
 1. Tweak Formatting
     - Footer for season table for current week (similar to career table)
-    - Bottom for career table, similar to BYE WEEK: # in season table, to display season #
     - More readable title colors
 
 2. Player Stats

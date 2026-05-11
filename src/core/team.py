@@ -155,6 +155,6 @@ class Team:
         """
 
         if self.ties > 0:
-            return f"{self.wins}-{self.losses}-{self.ties}"
+            return f"{self.wins:>2}-{self.losses}-{self.ties}"
 
-        return f"{self.wins}-{self.losses}"
+        return f"{self.wins:>2}-{self.losses:<2}"
