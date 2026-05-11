@@ -132,7 +132,7 @@ def update_season_table(team: Team, week: int, bye: int,
                 season_table.columns[0].footer = f"WEEK {week + 1:<2}"
                 season_table.columns[2].footer = team.get_record()
             else:
-                season_table.columns[0].footer = "[grey35]WEEK {week + 1:<2}[/grey35]"
+                season_table.columns[0].footer = f"[grey35]WEEK {week + 1:<2}[/grey35]"
                 season_table.columns[2].footer = f"[grey35]{team.get_record()}[/grey35]"
             season_table.columns[1].footer = score
             console.print(centered)
