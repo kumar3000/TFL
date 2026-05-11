@@ -1,3 +1,10 @@
+"""
+This module is the main module for the Terminal Football League.
+
+Functions:
+    main(): Runs the main season loop.
+"""
+
 import random
 from rich.console import Console
 from rich.align import Align
@@ -23,14 +30,14 @@ teams = {
     "Jacksonville": "Jaguars",
     "Kansas City": "Chiefs",
     "Las Vegas": "Raiders",
-    "Los Angeles": "Rams",
-    "Los Angeles": "Chargers",
+    "Los Angeles N": "Rams",
+    "Los Angeles A": "Chargers",
     "Miami": "Dolphins",
     "Minnesota": "Vikings",
     "New England": "Patriots",
     "New Orleans": "Saints",
-    "New York": "Giants",
-    "New York": "Jets",
+    "New York N": "Giants",
+    "New York A": "Jets",
     "Philadelphia": "Eagles",
     "Pittsburgh": "Steelers",
     "San Francisco": "49ers",
@@ -40,9 +47,13 @@ teams = {
     "Washington": "Football Team"
 }
 
+console = Console()
+console.clear()
+
 def main():
-    console = Console()
-    console.clear()
+    """
+    Runs the main season loop.
+    """
 
     # Game start/initialization
     console.print(
@@ -58,7 +69,9 @@ def main():
         team.add_year()
         if team.get_seasons() == 20:
             console.print(
-                Align.center(Panel.fit("[gold3]You retire a veteran and a legend![/gold3]", padding=1),
+                Align.center(Panel.fit(
+                    "[gold3]You retire a veteran and a legend![/gold3]",
+                    padding=1),
                 vertical="middle"))
             break
         cont = input("enter to continue: ")
