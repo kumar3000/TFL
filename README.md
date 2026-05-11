@@ -1,9 +1,9 @@
 # TFL
 Terminal Football League
 
-TODO!
-1. <font color="green">Tweak Formatting [DONE]</font>
+$\color{green}{\text{Tweak Formatting [DONE]}}$
 
+TODO!
 2. Player Stats
     - Integrate player attributes with team/game sim
     - Encapsulate career and player states per season as well as totals into one table
