@@ -3,7 +3,8 @@ This module handles the season simulation.
 
 Functions:
     create_season_table(team: Team, bye: int) -> Table: Creates a season table.
-
+    update_season_table(team: Team, week: int, bye: int,
+        season_table: Table, centered: Align, postseason: bool) -> bool: Updates the season table.
     update_career_table(team: Team, finish: str): Updates the career table.
     regular_season(team: Team, bye: int, season_table: Table, centered: Align): Centered table.
     post_season(team: Team, season_table: Table, centered: Align) -> str: Runs the post season.
@@ -80,16 +81,21 @@ def create_season_table(team: Team, bye: int) -> Table:
     table.caption = f"BYE WEEK: {bye + 1}"
     return table
 
-def update_season_table(team: Team, week: int, bye: int, season_table: Table, centered: Align, postseason: bool) -> bool:
+def update_season_table(team: Team, week: int, bye: int,
+    season_table: Table, centered: Align, postseason: bool) -> bool:
     """
     Updates the season table.
 
     Args:
         team: Team: The team to update the season table for.
+        week: int: The week of the season.
         bye: int: The bye week.
+        season_table: Table: The season table.
+        centered: Align: The centered alignment.
+        postseason: bool: Whether the season is in the postseason.
 
     Returns:
-        Table: The season table.
+        bool: The result of the game.
     """
 
     console.clear()
@@ -122,16 +128,20 @@ def update_season_table(team: Team, week: int, bye: int, season_table: Table, ce
             console.print(centered)
         else:
             season_table.show_footer = True
-            season_table.columns[0].footer = f"WEEK {week + 1:<2}" if week != bye else f"[grey35]WEEK {week + 1:<2}[/grey35]"
+            if week != bye:
+                season_table.columns[0].footer = f"WEEK {week + 1:<2}"
+                season_table.columns[2].footer = team.get_record()
+            else:
+                season_table.columns[0].footer = "[grey35]WEEK {week + 1:<2}[/grey35]"
+                season_table.columns[2].footer = f"[grey35]{team.get_record()}[/grey35]"
             season_table.columns[1].footer = score
-            season_table.columns[2].footer = team.get_record() if bye != week else f"[grey35]{team.get_record()}[/grey35]"
             console.print(centered)
             season_table.add_row(
                 f"WEEK {week + 1:<2}" if week != bye else f"[grey35]WEEK {week + 1:<2}[/grey35]",
                 score,
                 team.get_record() if bye != week else f"[grey35]{team.get_record()}[/grey35]"
             )
-    
+
     return result
 
 def regular_season(team: Team, bye: int, season_table: Table, centered: Align):
