@@ -111,8 +111,9 @@ def update_season_table(team: Team, week: int, bye: int,
                 team.get_record()
             )
             return True
-        else:
-            score, result = game.tieless_game(team)
+
+        # wildcard week
+        score, result = game.tieless_game(team)
     else:
         if bye != week:
             score, result = game.start_game(team)
