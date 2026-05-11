@@ -1,12 +1,20 @@
-from . import game
+"""
+This module handles the season simulation.
+
+Functions:
+    create_season_table(team: Team, bye: int) -> Table: Creates a season table.
+    update_career_table(team: Team, finish: str): Updates the career table.
+    regular_season(team: Team, bye: int, season_table: Table, centered: Align): Runs the regular season.
+    post_season(team: Team, season_table: Table, centered: Align) -> str: Runs the post season.
+    season(team: Team): Runs the season.
+"""
+
+import random
 from rich.table import Table
 from rich.console import Console
-from rich.progress import track
-from rich.live import Live
 from rich.align import Align
 from .team import Team
-import random
-import time
+from . import game
 
 # career table initialization
 career_table = Table(
@@ -21,6 +29,17 @@ career_table_centered = Align.center(career_table)
 console = Console()
 
 def create_season_table(team: Team, bye: int) -> Table:
+    """
+    Creates a season table.
+
+    Args:
+        team: Team: The team to create the season table for.
+        bye: int: The bye week.
+
+    Returns:
+        Table: The season table.
+    """
+
     table = Table(
         title=f"{team.get_name()} {team.get_year()} Season",
         show_header=True,
@@ -32,8 +51,19 @@ def create_season_table(team: Team, bye: int) -> Table:
     return table
 
 def update_career_table(team: Team, finish: str):
+    """
+    Updates the career table.
+
+    Args:
+        team: Team: The team to update the career table for.
+        finish: str: The result of the season.
+    """
+
     # career table update
-    career_table.title = f"{team.get_seasons() + 1} Seasons" if team.get_seasons() > 0 else "1 Season"
+    if team.get_seasons() > 0:
+        career_table.title = f"{team.get_seasons() + 1} Seasons"
+    else:
+        career_table.title = "1 Season"
     career_table.footer_style = "bold green" if team.get_wins() > team.get_losses() else "bold red"
     career_table.columns[0].footer = f"{team.get_year()}"
     career_table.columns[1].footer = f"{team.get_record():<6} {finish}"
@@ -41,6 +71,16 @@ def update_career_table(team: Team, finish: str):
     career_table.add_row(str(team.get_year()), f"{team.get_record():<6} {finish}")
 
 def regular_season(team: Team, bye: int, season_table: Table, centered: Align):
+    """
+    Runs the regular season.
+
+    Args:
+        team: Team: The team to run the regular season for.
+        bye: int: The bye week.
+        season_table: Table: The season table.
+        centered: Align: The centered alignment.
+    """
+
     for i in range(17) if team.get_year() < 2021 else range(18):
         season_table.add_row(
             f"WEEK {i + 1:<2}" if i != bye else f"[grey35]WEEK {i + 1:<2}[/grey35]",
@@ -52,6 +92,18 @@ def regular_season(team: Team, bye: int, season_table: Table, centered: Align):
         input()
 
 def post_season(team: Team, season_table: Table, centered: Align) -> str:
+    """
+    Runs the post season.
+
+    Args:
+        team: Team: The team to run the post season for.
+        season_table: Table: The season table.
+        centered: Align: The centered alignment.
+
+    Returns:
+        str: The result of the post season.
+    """
+
     weeks = ["WC", "DIV", "CONF", "SB"]
 
     # determine bye
@@ -81,23 +133,30 @@ def post_season(team: Team, season_table: Table, centered: Align) -> str:
                 return f"[bold red]{week} LOSS[/bold red]"
             else:
                 return f"[dodger_blue3]{week} LOSS[/dodger_blue3]"
-    
+
     return f"[gold3]CHAMPION[/gold3]"
 
 def season(team: Team):
+    """
+    Runs the season.
+
+    Args:
+        team: Team: The team to run the season for.
+    """
+
     bye = random.randint(5, 12)
 
     # season table initialization
     season_table = create_season_table(team, bye)
     table_centered = Align.center(season_table)
     console.clear()
-    
+
     # weeks loop
     finish = ""
     regular_season(team, bye, season_table, table_centered)
     if team.get_losses() < 8:
         finish = post_season(team, season_table, table_centered)
-            
+
     # update career table
     update_career_table(team, finish)
 
