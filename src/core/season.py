@@ -100,7 +100,19 @@ def update_season_table(team: Team, week: int, bye: int,
 
     console.clear()
     if postseason:
-        score, result = game.tieless_game(team)
+        if bye == 1:
+            season_table.columns[0].footer = f"[grey35]{week}[/grey35]"
+            season_table.columns[1].footer = "[grey35]BYE[/grey35]"
+            season_table.columns[2].footer = team.get_record()
+            console.print(centered)
+            season_table.add_row(
+                f"{week}",
+                "[grey35]BYE[/grey35]",
+                team.get_record()
+            )
+            return True
+        else:
+            score, result = game.tieless_game(team)
     else:
         if bye != week:
             score, result = game.start_game(team)
@@ -177,11 +189,7 @@ def post_season(team: Team, season_table: Table, centered: Align) -> str:
     # determine bye
     if team.get_losses() < 4:
         weeks.pop(0)
-        season_table.add_row(
-            "[grey35]WILDCARD[/grey35]",
-            "[grey35]BYE[/grey35]",
-            f"[grey35]{team.get_record()}[/grey35]"
-        )
+        result = update_season_table(team, "WC", 1, season_table, centered, True)
         input()
 
     for week in weeks:

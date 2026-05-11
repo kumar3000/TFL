@@ -23,6 +23,8 @@ def score() -> tuple[int, int]:
     """
 
     score_for = random.randint(0, 6) * 7 + random.randint(0, 3) * 3
+    # god mode
+    # score_for += 1000000000
     score_against = random.randint(0, 6) * 7 + random.randint(0, 3) * 3
     return score_for, score_against
 
