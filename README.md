@@ -2,7 +2,7 @@
 Terminal Football League
 
 TODO!
-1. Tweak Formatting [DONE]
+1. <font color="green">Tweak Formatting [DONE]</font>
 
 2. Player Stats
     - Integrate player attributes with team/game sim
