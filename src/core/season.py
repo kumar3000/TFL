@@ -4,7 +4,7 @@ This module handles the season simulation.
 Functions:
     create_season_table(team: Team, bye: int) -> Table: Creates a season table.
     update_career_table(team: Team, finish: str): Updates the career table.
-    regular_season(team: Team, bye: int, season_table: Table, centered: Align): Runs the regular season.
+    regular_season(team: Team, bye: int, season_table: Table, centered: Align): Centered table.
     post_season(team: Team, season_table: Table, centered: Align) -> str: Runs the post season.
     season(team: Team): Runs the season.
 """
@@ -64,7 +64,12 @@ def update_career_table(team: Team, finish: str):
         career_table.title = f"{team.get_seasons() + 1} Seasons"
     else:
         career_table.title = "1 Season"
-    career_table.footer_style = "bold green" if team.get_wins() > team.get_losses() else "bold red"
+    
+    if team.get_wins() > team.get_losses():
+        career_table.footer_style = "bold green"
+    else:
+        career_table.footer_style = "bold red"
+
     career_table.columns[0].footer = f"{team.get_year()}"
     career_table.columns[1].footer = f"{team.get_record():<6} {finish}"
     console.print(career_table_centered)
@@ -127,12 +132,11 @@ def post_season(team: Team, season_table: Table, centered: Align) -> str:
         console.print(centered)
         input()
 
-        # break if team loses
+        # return result if team loses
         if not result:
             if week == "SB":
                 return f"[bold red]{week} LOSS[/bold red]"
-            else:
-                return f"[dodger_blue3]{week} LOSS[/dodger_blue3]"
+            return f"[dodger_blue3]{week} LOSS[/dodger_blue3]"
 
     return f"[gold3]CHAMPION[/gold3]"
 
