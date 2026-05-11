@@ -18,7 +18,7 @@ from . import game
 
 # career table initialization
 career_table = Table(
-    title="0 Seasons",
+    title="Career",
     show_header=True,
     show_footer=True,
     header_style="bold magenta",
@@ -61,20 +61,23 @@ def update_career_table(team: Team, finish: str):
     """
 
     # career table update
-    if team.get_seasons() > 0:
-        career_table.title = f"{team.get_seasons() + 1} Seasons"
-    else:
-        career_table.title = "1 Season"
-
     if team.get_wins() > team.get_losses():
         career_table.footer_style = "bold green"
     else:
         career_table.footer_style = "bold red"
 
-    career_table.columns[0].footer = f"{team.get_year()}"
-    career_table.columns[1].footer = f"{team.get_record():<6} {finish}"
-    console.print(career_table_centered)
-    career_table.add_row(str(team.get_year()), f"{team.get_record():<6} {finish}")
+    if team.get_seasons() > 0:
+        career_table.show_footer = True
+        career_table.caption = f"{team.get_seasons() + 1} Seasons"
+        career_table.columns[0].footer = f"{team.get_year()}"
+        career_table.columns[1].footer = f"{team.get_record():<6} {finish}"   
+        console.print(career_table_centered)
+        career_table.add_row(str(team.get_year()), f"{team.get_record():<6} {finish}")
+    else:
+        career_table.show_footer = False
+        career_table.caption = "Rookie Season"
+        career_table.add_row(str(team.get_year()), f"{team.get_record():<6} {finish}")
+        console.print(career_table_centered)
 
 def regular_season(team: Team, bye: int, season_table: Table, centered: Align):
     """
