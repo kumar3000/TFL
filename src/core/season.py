@@ -64,7 +64,7 @@ def update_career_table(team: Team, finish: str):
         career_table.title = f"{team.get_seasons() + 1} Seasons"
     else:
         career_table.title = "1 Season"
-    
+
     if team.get_wins() > team.get_losses():
         career_table.footer_style = "bold green"
     else:
@@ -115,8 +115,8 @@ def post_season(team: Team, season_table: Table, centered: Align) -> str:
     if team.get_losses() < 4:
         weeks.pop(0)
         season_table.add_row(
-            f"[grey35]WILDCARD[/grey35]",
-            f"[grey35]BYE[/grey35]",
+            "[grey35]WILDCARD[/grey35]",
+            "[grey35]BYE[/grey35]",
             f"[grey35]{team.get_record()}[/grey35]"
         )
 
@@ -138,7 +138,7 @@ def post_season(team: Team, season_table: Table, centered: Align) -> str:
                 return f"[bold red]{week} LOSS[/bold red]"
             return f"[dodger_blue3]{week} LOSS[/dodger_blue3]"
 
-    return f"[gold3]CHAMPION[/gold3]"
+    return "[gold3]CHAMPION[/gold3]"
 
 def season(team: Team):
     """
