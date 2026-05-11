@@ -9,7 +9,11 @@ import random
 import time
 
 # career table initialization
-career_table = Table(title="0 Seasons", show_header=True, show_footer=True, header_style="bold magenta", footer_style="bold green")
+career_table = Table(
+    title="0 Seasons",
+    show_header=True,
+    show_footer=True, header_style="bold magenta",
+    footer_style="bold green")
 career_table.add_column("Year", justify="center", footer="0")
 career_table.add_column("Record", justify="left", footer="0-0")
 career_table_centered = Align.center(career_table)
@@ -18,7 +22,9 @@ console = Console()
 
 def create_season_table(team: Team, bye: int) -> Table:
     table = Table(
-        title=f"{team.get_name()} {team.get_year()} Season", show_header=True, header_style="bold magenta")
+        title=f"{team.get_name()} {team.get_year()} Season",
+        show_header=True,
+        header_style="bold magenta")
     table.add_column("WEEK", justify="center")
     table.add_column("BOX SCORE", justify="center")
     table.add_column("RECORD", justify="center")

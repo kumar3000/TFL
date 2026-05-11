@@ -68,7 +68,7 @@ class Team:
         """
 
         return self.wins
-    
+
     def add_loss(self):
         """
         Adds a loss to the team.
@@ -88,7 +88,7 @@ class Team:
         """
 
         return self.losses
-    
+
     def add_tie(self):
         """
         Adds a tie to the team.
@@ -134,7 +134,7 @@ class Team:
         """
 
         return self.seasons
-    
+
     def add_year(self):
         """
         Adds a year to the team.
@@ -156,5 +156,5 @@ class Team:
 
         if self.ties > 0:
             return f"{self.wins}-{self.losses}-{self.ties}"
-        
+
         return f"{self.wins}-{self.losses}"
